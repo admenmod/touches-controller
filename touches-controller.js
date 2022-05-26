@@ -115,7 +115,8 @@ TouchesController.Touch = class {
 	isPress() { return this.fP; }
 	isUp() { return this.fU; }
 	isMove() { return this.fM; }
-	isTimeDown(time = 30) {
+	
+	isTimeDown(time = 300) {
 		if(this.down && this.downTime >= time) {
 			this.down = false;
 			this.downTime = 0;
@@ -123,8 +124,9 @@ TouchesController.Touch = class {
 		};
 		return false;
 	}
-	nullify() {
+
+	nullify(dt = 10) {
 		this.fP = this.fU = this.fC = this.fM = this.fdbC = false;
-		if(this.down) this.downTime++;
+		if(this.down) this.downTime += dt;
 	}
 };
